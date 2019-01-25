@@ -32,6 +32,8 @@ public class Grabber : MonoBehaviour
             objectGrabbed = true;
             grabbableObject.transform.SetParent(gameObject.transform);
             grabbableObject.transform.rotation = gameObject.transform.rotation;
+            grabbableObject.GetComponent<Rigidbody>().useGravity = false;
+            grabbableObject.transform.position = new Vector3(grabbableObject.transform.position.x, gameObject.transform.position.y, grabbableObject.transform.position.z);
             grabbedObject = grabbableObject.transform.gameObject;
 
             weapon.SetActive(false);
@@ -64,5 +66,6 @@ public class Grabber : MonoBehaviour
     {
         objectGrabbed = false;
         grabbedObject.transform.SetParent(null);
+        grabbedObject.GetComponent<Rigidbody>().useGravity = true;
     }
 }
