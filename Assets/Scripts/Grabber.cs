@@ -39,11 +39,18 @@ public class Grabber : MonoBehaviour
             weapon.SetActive(false);
         }
 
-        else if (Input.GetButtonDown("Fire2") && objectGrabbed == true)
+        else if (Input.GetButtonDown("Fire1") && objectGrabbed == true)
         {
             detachObject();
 
             grabbedObject.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+
+            weapon.SetActive(true);
+        }
+
+        else if (Input.GetButtonDown("Fire2") && objectGrabbed == true)
+        {
+            detachObject();
 
             weapon.SetActive(true);
         }
@@ -64,8 +71,8 @@ public class Grabber : MonoBehaviour
 
     public void detachObject()
     {
-        objectGrabbed = false;
         grabbedObject.transform.SetParent(null);
         grabbedObject.GetComponent<Rigidbody>().useGravity = true;
+        objectGrabbed = false;
     }
 }

@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     public float damage = 20f;
     private GameObject enemyTarget;
     private bool enemyInRange;
+    public GameObject weapon;
 
     // Start is called before the first frame update
     void Start()
@@ -17,15 +18,18 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && GetComponentInChildren<WeaponBehavior>().AnimationsPlaying(0) == false && gameObject.GetComponent<Grabber>().objectGrabbed == false)
+
+        if (weapon != null && GetComponentInChildren<WeaponBehavior>() != null)
         {
-            GetComponentInChildren<WeaponBehavior>().PlayWeaponAnimation();
-            if(enemyInRange == true)
+            if (Input.GetButtonDown("Fire1") && GetComponentInChildren<WeaponBehavior>().AnimationsPlaying(0) == false && gameObject.GetComponent<Grabber>().objectGrabbed == false)
             {
-                enemyTarget.GetComponent<EnemyHealth>().health -= damage;
+                GetComponentInChildren<WeaponBehavior>().PlayWeaponAnimation();
+                if (enemyInRange == true)
+                {
+                    enemyTarget.GetComponent<EnemyHealth>().health -= damage;
+                }
             }
         }
-
         /*
         if(enemyTarget != null)
         print(enemyTarget.name);*/
