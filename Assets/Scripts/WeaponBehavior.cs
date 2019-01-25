@@ -16,10 +16,7 @@ public class WeaponBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && AnimationsPlaying(0) == false)
-        {
-            gameObject.GetComponent<Animator>().Play(RandomWeaponAnimation(),0,0f);
-        }
+        
     }
 
     public bool AnimationsPlaying(int layer)
@@ -35,11 +32,16 @@ public class WeaponBehavior : MonoBehaviour
         return false;
     }
 
-    public string RandomWeaponAnimation()
+    private string RandomWeaponAnimation()
     {
         int tester = Random.Range(0, animations.Count);
-        print(tester);
+        //print(tester);
 
         return animations[tester];
+    }
+
+    public void PlayWeaponAnimation()
+    {
+        gameObject.GetComponent<Animator>().Play(RandomWeaponAnimation(), 0, 0f);
     }
 }

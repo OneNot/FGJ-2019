@@ -9,6 +9,7 @@ public class Grabber : MonoBehaviour
     private GameObject grabbedObject;
     private bool objectInRange;
     private GameObject grabbableObject;
+    public GameObject weapon;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +33,17 @@ public class Grabber : MonoBehaviour
             grabbableObject.transform.SetParent(gameObject.transform);
             grabbableObject.transform.rotation = gameObject.transform.rotation;
             grabbedObject = grabbableObject.transform.gameObject;
+
+            weapon.SetActive(false);
         }
 
         else if (Input.GetButtonDown("Fire2") && objectGrabbed == true)
         {
-            objectGrabbed = false;
-            grabbedObject.transform.SetParent(null);
+            detachObject();
+
             grabbedObject.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+
+            weapon.SetActive(true);
         }
     }
 
@@ -53,5 +58,11 @@ public class Grabber : MonoBehaviour
     {
         objectInRange = false;
 
+    }
+
+    public void detachObject()
+    {
+        objectGrabbed = false;
+        grabbedObject.transform.SetParent(null);
     }
 }
