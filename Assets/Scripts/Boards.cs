@@ -27,9 +27,9 @@ public class Boards : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++)
         {
             boards[i] = transform.GetChild(i);
-            boards[i].gameObject.SetActive(false);
+            //boards[i].gameObject.SetActive(false);
         }
-        BoardsAlive = 0;
+        BoardsAlive = 4;
     }
 
     // Update is called once per frame
@@ -86,6 +86,7 @@ public class Boards : MonoBehaviour
         if (other.tag == "Enemy")
         {
             other.GetComponent<Patrol>().attackstate = true;
+            print("triggered");
         }
     }
 }

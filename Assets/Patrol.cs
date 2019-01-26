@@ -57,7 +57,7 @@ public class Patrol : MonoBehaviour
     }
     void Update()
     {
-        animator.SetFloat("distanceToPlayer", Vector3.Distance(transform.position, target.position));
+        //animator.SetFloat("distanceToPlayer", Vector3.Distance(transform.position, target.position));
         if (!attackstate)
         {
             animator.SetBool("isMoving", true);
@@ -99,6 +99,7 @@ public class Patrol : MonoBehaviour
     
     private void GoInside()
     {
+        print("go inside");
         attackstate = false;
         animator.SetBool("atWindow", false);
         target = GameObject.FindGameObjectWithTag("Player").transform;
