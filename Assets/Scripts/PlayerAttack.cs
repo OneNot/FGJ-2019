@@ -33,7 +33,19 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if(Input.GetAxis("Mouse ScrollWheel") >= 0.1)
+        if (equippedWeapon != null && GetComponentInChildren<WeaponBehavior>() != null)
+        {
+            if (Input.GetButtonDown("Fire1") && GetComponentInChildren<WeaponBehavior>().AnimationsPlaying(0) == false && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "firearm")
+            {
+                GetComponentInChildren<WeaponBehavior>().PlayWeaponAnimation();
+                if (enemyInRange == true)
+                {
+                    enemyTarget.GetComponent<EnemyHealth>().health -= damage;
+                }
+            }
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") >= 0.1)
         {
             NextWeapon();
         }
@@ -86,7 +98,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void NextWeapon()
     {
-        if(Weapons[Weapons.IndexOf(equippedWeapon) + 1]!= null)
+        if(Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[Weapons.Count -1])
         {
             SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + 1]);
         }
@@ -97,7 +109,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void PrevWeapon()
     {
-        if (Weapons[Weapons.IndexOf(equippedWeapon) - 1] != null)
+        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[0])
         {
             SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) - 1]);
         }
