@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Transform playerCam;
     private CharacterController controller;
 
+    public GameObject tempBoardTarget;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,15 @@ public class PlayerMovement : MonoBehaviour
 
         //apply movement
         controller.Move(moveDirection * Time.deltaTime);
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            tempBoardTarget.GetComponent<Boards>().TakeDamage(10f);
+        }
+        if(Input.GetButtonUp("Fire2"))
+        {
+            tempBoardTarget.GetComponent<Boards>().RepairABoard();
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -57,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 
         // Apply the push
-        body.AddForceAtPosition(pushDir * PushForce, hit.point);
-        //body.velocity = pushDir * PushForce / body.mass;
+        body.AddForceAtPosition(pushDir * PushForce / body.mass, hit.point); //BUG: moving sideways while pushing makes pushing MUCH easier...
     }
 }
