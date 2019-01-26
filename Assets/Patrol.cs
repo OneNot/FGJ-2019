@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
+//toimi paska
     private float last_attack_time = 0f;
     public float attackspeed;
     private Transform target;
