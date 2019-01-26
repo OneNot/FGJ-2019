@@ -8,11 +8,20 @@ public class Boards : MonoBehaviour
     private float currentBoardHealth;
     public float BoardsMaxHealth;
     public int BoardsAlive { get; set; }
+    public AudioSource auSourceOther, auSourceRepair;
+    public AudioClip OnBoardPlaced, OnBoardDamage, OnBoardBreak;
+    public float SFXAudioVolume;
+
+    public bool IsRepairing { get; set; }
+    private float lastRepair = 0f;
+    public float RepairInterval;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        auSourceRepair.volume = SFXAudioVolume;
+
         boards = new Transform[transform.childCount];
         //get all boards and deactivate them to start with
         for(int i = 0; i < transform.childCount; i++)
@@ -26,17 +35,28 @@ public class Boards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(IsRepairing && Time.time - lastRepair > RepairInterval)
+        {
+            if(!auSourceRepair.isPlaying) { auSourceRepair.Play(); }
+            RepairABoard();
+        }
+        else if(!IsRepairing && auSourceRepair.isPlaying) { auSourceRepair.Stop(); }
     }
 
     //repairs a single board when called
-    public void RepairABoard()
+    private void RepairABoard()
     {
         if(BoardsAlive < boards.Length)
         {
             boards[BoardsAlive].gameObject.SetActive(true);
+            auSourceOther.PlayOneShot(OnBoardPlaced, SFXAudioVolume);
             currentBoardHealth = BoardsMaxHealth;
+            lastRepair = Time.time;
             BoardsAlive++;
+            if(BoardsAlive >= boards.Length) //all fixed
+            {
+                IsRepairing = false;
+            }
         }
     }
 
@@ -46,12 +66,17 @@ public class Boards : MonoBehaviour
         if (BoardsAlive > 0)
         {
             currentBoardHealth -= damage; //doing damage to one board at a time
-            if(currentBoardHealth <= 0f) //if the damage destroyed the board...
+            if (currentBoardHealth <= 0f) //if the damage destroyed the board...
             {
+                auSourceOther.PlayOneShot(OnBoardBreak, SFXAudioVolume);
                 boards[BoardsAlive - 1].gameObject.SetActive(false); //...deactivate that board
                 BoardsAlive--;
-                if(BoardsAlive > 0)
+                if (BoardsAlive > 0)
                     currentBoardHealth = BoardsMaxHealth; //the next board has full health
+            }
+            else //didn't break just damaged
+            {
+                auSourceOther.PlayOneShot(OnBoardDamage, SFXAudioVolume);
             }
         }
     }
