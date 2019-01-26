@@ -50,8 +50,6 @@ public class Patrol : MonoBehaviour
             }
         }
         target = closest_entrance; //claims the closest entrance as the target
-
-        
         
     }
     void Update()
@@ -63,19 +61,17 @@ public class Patrol : MonoBehaviour
         }
         else if(Time.time - last_attack_time > attackspeed)
         {
-<<<<<<< HEAD
            // animator.isMoving = false;
             //animator.atWindow = animator.atDoor = false;
             if(target.tag == "Door")
             {
                // animator.atDoor = true;
-=======
+            }
             //animator.isMoving = false;
             //animator.atWindow = animator.atDoor = false;
             if(target.tag == "Door")
             {
                 //animator.atDoor = true;
->>>>>>> e49428e411834716fbce7c9ac60eacea739cb110
                 //if (target.GetComponent<DoorScript>().Health > 0f)
                 {
                     //target.GetComponent<DoorScript>().TakeDamage(attackdamage);
@@ -84,11 +80,8 @@ public class Patrol : MonoBehaviour
             }
             else if(target.tag == "Window")
             {
-<<<<<<< HEAD
                // animator.atWindow = true;
-=======
                 //animator.atWindow = true;
->>>>>>> e49428e411834716fbce7c9ac60eacea739cb110
                 if (target.GetComponent<Boards>().BoardsAlive > 0)
                 {
                     target.GetComponent<Boards>().TakeDamage(attackdamage);
