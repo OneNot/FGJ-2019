@@ -60,7 +60,6 @@ public class Boards : MonoBehaviour
 
         if (other.tag == "Enemy")
         {
-
             other.GetComponent<Patrol>().attackstate = true;
         }
     }
