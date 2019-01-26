@@ -33,15 +33,11 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (equippedWeapon != null && GetComponentInChildren<WeaponBehavior>() != null)
+        if (equippedWeapon != null)
         {
-            if (Input.GetButtonDown("Fire1") && GetComponentInChildren<WeaponBehavior>().AnimationsPlaying(0) == false && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "firearm")
+            if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "shotgun")
             {
-                GetComponentInChildren<WeaponBehavior>().PlayWeaponAnimation();
-                if (enemyInRange == true)
-                {
-                    enemyTarget.GetComponent<EnemyHealth>().health -= damage;
-                }
+                GetComponentInChildren<Bullet_Spawner_Shotgun>().fire();
             }
         }
 
@@ -55,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
             PrevWeapon();
         }
 
-        print(Input.GetAxis("Mouse ScrollWheel"));
+        //print(Input.GetAxis("Mouse ScrollWheel"));
         /*
         if(enemyTarget != null)
         print(enemyTarget.name);*/
