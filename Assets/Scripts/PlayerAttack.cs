@@ -7,7 +7,9 @@ public class PlayerAttack : MonoBehaviour
     public float damage = 20f;
     private GameObject enemyTarget;
     private bool enemyInRange;
-    public GameObject weapon;
+    public GameObject equippedWeapon;
+    public List<GameObject> Weapons;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +21,9 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
 
-        if (weapon != null && GetComponentInChildren<WeaponBehavior>() != null)
+        if (equippedWeapon != null && GetComponentInChildren<WeaponBehavior>() != null)
         {
-            if (Input.GetButtonDown("Fire1") && GetComponentInChildren<WeaponBehavior>().AnimationsPlaying(0) == false && gameObject.GetComponent<Grabber>().objectGrabbed == false)
+            if (Input.GetButtonDown("Fire1") && GetComponentInChildren<WeaponBehavior>().AnimationsPlaying(0) == false && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "melee")
             {
                 GetComponentInChildren<WeaponBehavior>().PlayWeaponAnimation();
                 if (enemyInRange == true)
@@ -30,9 +32,22 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+
+        if(Input.GetAxis("Mouse ScrollWheel") >= 0.1)
+        {
+            NextWeapon();
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") <= -0.1)
+        {
+            PrevWeapon();
+        }
+
+        print(Input.GetAxis("Mouse ScrollWheel"));
         /*
         if(enemyTarget != null)
         print(enemyTarget.name);*/
+
     }
 
     private void OnTriggerStay(Collider enemy)
@@ -50,5 +65,44 @@ public class PlayerAttack : MonoBehaviour
         {
             enemyInRange = false;
         }
+    }
+
+    public void SwitchToWeapon(GameObject weapon)
+    {
+        UnEquipWeapon();
+        equippedWeapon = weapon;
+        EquipWeapon();
+    }
+
+    public void EquipWeapon()
+    {
+        equippedWeapon.SetActive(true);
+    }
+
+    public void UnEquipWeapon()
+    {
+        equippedWeapon.SetActive(false);
+    }
+
+    public void NextWeapon()
+    {
+        if(Weapons[Weapons.IndexOf(equippedWeapon) + 1]!= null)
+        {
+            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + 1]);
+        }
+
+        else
+            SwitchToWeapon(Weapons[0]);
+    }
+
+    public void PrevWeapon()
+    {
+        if (Weapons[Weapons.IndexOf(equippedWeapon) - 1] != null)
+        {
+            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) - 1]);
+        }
+
+        else
+            SwitchToWeapon(Weapons[Weapons.Count - 1]);
     }
 }
