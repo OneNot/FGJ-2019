@@ -15,6 +15,9 @@ public class Patrol : MonoBehaviour
     public bool attackstate;
     public float attackdamage;
     public Animator animator;
+    public float health;
+    public float forceApplied_onHit;
+
 
     void Start()
     {
@@ -73,9 +76,9 @@ public class Patrol : MonoBehaviour
             {
                 //animator.atDoor = true;
                 //if (target.GetComponent<DoorScript>().Health > 0f)
-                {
+                /*{
                     //target.GetComponent<DoorScript>().TakeDamage(attackdamage);
-                }
+                }*/
                 //else { GoInside(); }
             }
             else if(target.tag == "Window")
@@ -103,6 +106,21 @@ public class Patrol : MonoBehaviour
         attackstate = false;
         //go inside animation
         target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+    public void TakeDamage(float damage, Collision hitposition)
+    {
+        health -= damage;
+        if (health <= 0f)
+        {
+            //Die
+            Vector3 forceDirection = (hitposition.GetContact(0).point - hitposition.gameObject.transform.position).normalized;
+            hitposition.gameObject.GetComponent<Rigidbody>().AddForceAtPosition(forceDirection * forceApplied_onHit, hitposition.GetContact(0).point);
+        }
+        else
+        {
+            //gets hit
+            animator.SetTrigger("hit");
+        }
     }
 
 }
