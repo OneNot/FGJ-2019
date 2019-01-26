@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gravity: 300
-  MoveSpeed: 5
+  MoveSpeed: 4
   LookSensitivity: 5
   VerticalLookAngleLimit: 80
   PushForce: 4
