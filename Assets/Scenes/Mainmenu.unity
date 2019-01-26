@@ -196,12 +196,12 @@ PrefabInstance:
     - target: {fileID: 224459781818263732, guid: 6b97e29fafdd98743acbaffcd0a58134,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 407.7
       objectReference: {fileID: 0}
     - target: {fileID: 224459781818263732, guid: 6b97e29fafdd98743acbaffcd0a58134,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -61.52
       objectReference: {fileID: 0}
     - target: {fileID: 224459781818263732, guid: 6b97e29fafdd98743acbaffcd0a58134,
         type: 3}
@@ -797,12 +797,12 @@ PrefabInstance:
     - target: {fileID: 224459781818263732, guid: 6b97e29fafdd98743acbaffcd0a58134,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 407.88
       objectReference: {fileID: 0}
     - target: {fileID: 224459781818263732, guid: 6b97e29fafdd98743acbaffcd0a58134,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 75
+      value: 57.7
       objectReference: {fileID: 0}
     - target: {fileID: 224459781818263732, guid: 6b97e29fafdd98743acbaffcd0a58134,
         type: 3}
@@ -950,12 +950,12 @@ PrefabInstance:
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 21.1
       objectReference: {fileID: 0}
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: -293
       objectReference: {fileID: 0}
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
@@ -1163,15 +1163,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.12190795, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c32aecb7cd835c54ebf4bab888858a98, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1524,12 +1524,12 @@ PrefabInstance:
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 16.5
       objectReference: {fileID: 0}
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -400
+      value: -446.4
       objectReference: {fileID: 0}
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
@@ -1769,12 +1769,12 @@ PrefabInstance:
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 21.1
       objectReference: {fileID: 0}
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: -293
       objectReference: {fileID: 0}
     - target: {fileID: 224414320616968414, guid: 6aca1db365768ea4fa56c79bcc7785c2,
         type: 3}
@@ -2303,7 +2303,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119885694}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
