@@ -1437,6 +1437,7 @@ ModelImporter:
     7400024: window_bash
     7400026: window_fall
     7400028: walk_forward_Legs
+    7400030: T_pose (1)
     9500000: //RootNode
     13700000: bigMan
     13700002: brow
@@ -1463,7 +1464,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
@@ -1473,25 +1474,28 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - bigMan
+    - man
+    - woman
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default Take
-      takeName: Default Take
+      name: T_pose (1)
+      takeName: T_pose
       firstFrame: -1
-      lastFrame: 119
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      hasAdditiveReferencePose: 0
+      hasAdditiveReferencePose: 1
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1508,7 +1512,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: -1
     - serializedVersion: 16
       name: anims
       takeName: anims
@@ -5360,7 +5364,7 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
+    preserveHierarchy: 1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -5372,10 +5376,10 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 0
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
+    blendShapeNormalImportMode: 0
     normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
