@@ -20,6 +20,6 @@ public class Bullet_Spawner_Shotgun : MonoBehaviour
 
     public void fire()
     {
-        Instantiate(bullet,transform.gameObject)
+        //Instantiate(bullet,transform.gameObject)
     }
 }
