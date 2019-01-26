@@ -12,7 +12,7 @@ public class WeaponBehavior : MonoBehaviour
     void Start()
     {
         auSource = gameObject.GetComponent<AudioSource>();
-        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100;
+        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100f;
     }
 
     // Update is called once per frame
