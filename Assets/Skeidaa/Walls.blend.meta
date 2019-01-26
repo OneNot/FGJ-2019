@@ -4,8 +4,6 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
 <<<<<<< HEAD
-    2186277476908879412: ImportLogs
-=======
     100000: Cube_000
     100002: Cube_001
     100004: Cube_002
@@ -41,7 +39,9 @@ ModelImporter:
     4300010: Cube_001
     7400000: Default Take
     9500000: //RootNode
->>>>>>> eeef07416ddaa8e1a0c1311e712d95ad58e21fb8
+=======
+    2186277476908879412: ImportLogs
+>>>>>>> parent of 28e9378... aaa
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -95,7 +95,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
