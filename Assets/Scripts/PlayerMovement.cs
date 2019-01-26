@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         auSource = GetComponent<AudioSource>();
-        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100;
+        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100f;
         controller = transform.GetComponent<CharacterController>();
         playerCam = transform.Find("Main Camera");
         VerRotation = 0;
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
 
         //Debug code=====
-        if(Input.GetButtonUp("Fire1"))
+        /*if(Input.GetButtonUp("Fire1"))
         {
             tempBoardTarget.GetComponent<Boards>().TakeDamage(10f);
         }
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetButtonUp("Fire2"))
         {
             tempBoardTarget.GetComponent<Boards>().IsRepairing = false;
-        }
+        }*/
         //================
     }
 

@@ -9,12 +9,15 @@ public class PlayerAttack : MonoBehaviour
     private bool enemyInRange;
     public GameObject equippedWeapon;
     public List<GameObject> Weapons;
+    private AudioSource auSource;
+    public AudioClip FireAudio;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        auSource = transform.Find("Weapon_Shotgun").GetComponent<AudioSource>();
+        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100f;
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "shotgun")
             {
                 GetComponentInChildren<Bullet_Spawner_Shotgun>().fire();
+                auSource.PlayOneShot(FireAudio);
             }
         }
 
