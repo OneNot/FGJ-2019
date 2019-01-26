@@ -55,4 +55,13 @@ public class Boards : MonoBehaviour
             }
         }
     }
+    public void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "Enemy")
+        {
+
+            other.GetComponent<Patrol>().attackstate = true;
+        }
+    }
 }
