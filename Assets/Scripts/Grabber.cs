@@ -9,7 +9,6 @@ public class Grabber : MonoBehaviour
     private GameObject grabbedObject;
     private bool objectInRange;
     private GameObject grabbableObject;
-    public GameObject weapon;
     public float moveCloser = 0.05f;
     // Start is called before the first frame update
     void Start()
@@ -39,7 +38,7 @@ public class Grabber : MonoBehaviour
             //grabbableObject.transform.position = new Vector3(grabbableObject.transform.position.x, gameObject.transform.position.y, grabbableObject.transform.position.z);
             grabbedObject = grabbableObject.transform.gameObject;
             //grabbableObject.transform.position = Vector3.MoveTowards(grabbableObject.transform.position, gameObject.transform.position, moveCloser);
-            weapon.SetActive(false);
+            gameObject.GetComponent<PlayerAttack>().UnEquipWeapon();
             objectGrabbed = true;
         }
 
@@ -50,14 +49,14 @@ public class Grabber : MonoBehaviour
             grabbedObject.GetComponent<ThrowableObject>().primed = true;
             grabbedObject.GetComponent<Rigidbody>().AddForce(transform.forward * force);
 
-            weapon.SetActive(true);
+            gameObject.GetComponent<PlayerAttack>().EquipWeapon();
         }
 
         else if (Input.GetButtonDown("Fire2") && objectGrabbed == true)
         {
             detachObject();
 
-            weapon.SetActive(true);
+            gameObject.GetComponent<PlayerAttack>().EquipWeapon();
         }
     }
 
@@ -88,5 +87,8 @@ public class Grabber : MonoBehaviour
         objectGrabbed = false;
 
         print("detached");
+
+        gameObject.GetComponent<PlayerAttack>().EquipWeapon();
+
     }
 }
