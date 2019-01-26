@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         auSource = GetComponent<AudioSource>();
-        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100;
+        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100f;
         controller = transform.GetComponent<CharacterController>();
         playerCam = transform.Find("Main Camera");
         VerRotation = 0;
