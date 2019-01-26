@@ -42,14 +42,20 @@ public class PlayerMovement : MonoBehaviour
         //apply movement
         controller.Move(moveDirection * Time.deltaTime);
 
+        //Debug code=====
         if(Input.GetButtonUp("Fire1"))
         {
             tempBoardTarget.GetComponent<Boards>().TakeDamage(10f);
         }
-        if(Input.GetButtonUp("Fire2"))
+        if(Input.GetButtonDown("Fire2"))
         {
-            tempBoardTarget.GetComponent<Boards>().RepairABoard();
+            tempBoardTarget.GetComponent<Boards>().IsRepairing = true;
         }
+        else if (Input.GetButtonUp("Fire2"))
+        {
+            tempBoardTarget.GetComponent<Boards>().IsRepairing = false;
+        }
+        //================
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

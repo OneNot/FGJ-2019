@@ -33,15 +33,11 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (equippedWeapon != null && GetComponentInChildren<WeaponBehavior>() != null)
+        if (equippedWeapon != null)
         {
-            if (Input.GetButtonDown("Fire1") && GetComponentInChildren<WeaponBehavior>().AnimationsPlaying(0) == false && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "firearm")
+            if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "shotgun")
             {
-                GetComponentInChildren<WeaponBehavior>().PlayWeaponAnimation();
-                if (enemyInRange == true)
-                {
-                    enemyTarget.GetComponent<EnemyHealth>().health -= damage;
-                }
+                GetComponentInChildren<Bullet_Spawner_Shotgun>().fire();
             }
         }
 
@@ -55,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
             PrevWeapon();
         }
 
-        print(Input.GetAxis("Mouse ScrollWheel"));
+        //print(Input.GetAxis("Mouse ScrollWheel"));
         /*
         if(enemyTarget != null)
         print(enemyTarget.name);*/
@@ -79,11 +75,18 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void SwitchToWeapon(GameObject weapon)
+    public bool SwitchToWeapon(GameObject weapon)
     {
-        UnEquipWeapon();
-        equippedWeapon = weapon;
-        EquipWeapon();
+        if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == true)
+        {
+            UnEquipWeapon();
+            equippedWeapon = weapon;
+            EquipWeapon();
+            return true;
+        }
+
+        else
+            return false;
     }
 
     public void EquipWeapon()
@@ -98,9 +101,18 @@ public class PlayerAttack : MonoBehaviour
 
     public void NextWeapon()
     {
+        int counter = 1;
+
         if(Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[Weapons.Count -1])
         {
-            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + 1]);
+            for(int i = 0;i<Weapons.Count; i++)
+
+            if(SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + counter]) == true)
+            {
+                    i = Weapons.Count;
+            }
+
+            counter++;
         }
 
         else
@@ -109,9 +121,18 @@ public class PlayerAttack : MonoBehaviour
 
     public void PrevWeapon()
     {
-        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[0])
+        int counter = -1;
+
+        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[Weapons.Count - 1])
         {
-            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) - 1]);
+            for (int i = 0; i < Weapons.Count; i++)
+
+                if (SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) - counter]) == true)
+                {
+                    i = Weapons.Count;
+                }
+
+            counter--;
         }
 
         else
