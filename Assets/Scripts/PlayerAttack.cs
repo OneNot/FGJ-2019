@@ -33,7 +33,15 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if(Input.GetAxis("Mouse ScrollWheel") >= 0.1)
+        if (equippedWeapon != null)
+        {
+            if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<Grabber>().objectGrabbed == false && GetComponentInChildren<WeaponInfo>().type == "shotgun")
+            {
+                GetComponentInChildren<Bullet_Spawner_Shotgun>().fire();
+            }
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") >= 0.1)
         {
             NextWeapon();
         }
@@ -67,11 +75,35 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void SwitchToWeapon(GameObject weapon)
+    public void SwitchToWeapon(GameObject weapon,string next_or_prev)
     {
-        UnEquipWeapon();
-        equippedWeapon = weapon;
-        EquipWeapon();
+        if (gameObject.GetComponent<Grabber>().objectGrabbed == false)
+        {
+
+            if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == true)
+            {
+                UnEquipWeapon();
+                equippedWeapon = weapon;
+                EquipWeapon();
+            }
+
+            else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "next")
+            {
+                UnEquipWeapon();
+                equippedWeapon = weapon;
+                EquipWeapon();
+                NextWeapon();
+            }
+
+            else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "prev")
+            {
+                UnEquipWeapon();
+                equippedWeapon = weapon;
+                EquipWeapon();
+                PrevWeapon();
+            }
+        }
+
     }
 
     public void EquipWeapon()
@@ -86,23 +118,25 @@ public class PlayerAttack : MonoBehaviour
 
     public void NextWeapon()
     {
-        if(Weapons[Weapons.IndexOf(equippedWeapon) + 1]!= null)
+        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[Weapons.Count - 1])
         {
-            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + 1]);
+            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + 1], "next");
         }
 
         else
-            SwitchToWeapon(Weapons[0]);
+            SwitchToWeapon(Weapons[0],"next");
+
     }
 
     public void PrevWeapon()
     {
-        if (Weapons[Weapons.IndexOf(equippedWeapon) - 1] != null)
+        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[0])
         {
-            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) - 1]);
+            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) -1], "prev");
         }
 
         else
-            SwitchToWeapon(Weapons[Weapons.Count - 1]);
+            SwitchToWeapon(Weapons[Weapons.Count-1], "prev");
     }
+
 }

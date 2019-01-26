@@ -7,12 +7,14 @@ using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
+//toimi paska
     private float last_attack_time = 0f;
     public float attackspeed;
     private Transform target;
     private NavMeshAgent agent;
     public bool attackstate;
     public float attackdamage;
+    public Animator animator;
 
     void Start()
     {
@@ -48,21 +50,28 @@ public class Patrol : MonoBehaviour
             }
         }
         target = closest_entrance; //claims the closest entrance as the target
-
-        
         
     }
     void Update()
     {
         if (!attackstate)
         {
+            //animator.isMoving = true;
             agent.destination = target.position;
         }
         else if(Time.time - last_attack_time > attackspeed)
         {
+           // animator.isMoving = false;
+            //animator.atWindow = animator.atDoor = false;
             if(target.tag == "Door")
             {
-                //door animation
+               // animator.atDoor = true;
+            }
+            //animator.isMoving = false;
+            //animator.atWindow = animator.atDoor = false;
+            if(target.tag == "Door")
+            {
+                //animator.atDoor = true;
                 //if (target.GetComponent<DoorScript>().Health > 0f)
                 {
                     //target.GetComponent<DoorScript>().TakeDamage(attackdamage);
@@ -71,7 +80,8 @@ public class Patrol : MonoBehaviour
             }
             else if(target.tag == "Window")
             {
-                //window animation
+               // animator.atWindow = true;
+                //animator.atWindow = true;
                 if (target.GetComponent<Boards>().BoardsAlive > 0)
                 {
                     target.GetComponent<Boards>().TakeDamage(attackdamage);
