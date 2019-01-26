@@ -96,16 +96,11 @@ public class Boards : MonoBehaviour
         Transform t = childObject.transform;
         while (t.parent != null)
         {
-<<<<<<< HEAD
             if (t.parent.tag == tag)
             {
                 return t.parent.gameObject;
             }
             t = t.parent.transform;
-=======
-            other.GetComponent<Patrol>().attackstate = true;
-            print("triggered");
->>>>>>> eeef07416ddaa8e1a0c1311e712d95ad58e21fb8
         }
         return null; // Could not find a parent with given tag.
     }
