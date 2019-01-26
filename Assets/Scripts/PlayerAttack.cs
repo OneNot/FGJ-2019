@@ -77,29 +77,32 @@ public class PlayerAttack : MonoBehaviour
 
     public void SwitchToWeapon(GameObject weapon,string next_or_prev)
     {
-        if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == true)
+        if (gameObject.GetComponent<Grabber>().objectGrabbed == false)
         {
-            UnEquipWeapon();
-            equippedWeapon = weapon;
-            EquipWeapon();
-        }
 
-        else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "next")
-        {
-            UnEquipWeapon();
-            equippedWeapon = weapon;
-            EquipWeapon();
-            NextWeapon();
-        }
+            if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == true)
+            {
+                UnEquipWeapon();
+                equippedWeapon = weapon;
+                EquipWeapon();
+            }
 
-        else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "prev")
-        {
-            UnEquipWeapon();
-            equippedWeapon = weapon;
-            EquipWeapon();
-            PrevWeapon();
-        }
+            else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "next")
+            {
+                UnEquipWeapon();
+                equippedWeapon = weapon;
+                EquipWeapon();
+                NextWeapon();
+            }
 
+            else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "prev")
+            {
+                UnEquipWeapon();
+                equippedWeapon = weapon;
+                EquipWeapon();
+                PrevWeapon();
+            }
+        }
 
     }
 
