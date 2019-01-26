@@ -41,3 +41,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Scripts/Boards.cs
+Assets/Skeidaa/Walls.blend.meta
