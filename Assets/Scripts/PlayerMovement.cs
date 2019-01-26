@@ -8,12 +8,16 @@ public class PlayerMovement : MonoBehaviour
     private float VerRotation, HorRotation;
     private Transform playerCam;
     private CharacterController controller;
+    private AudioSource auSource;
+    public AudioClip footS1, footS2, footS3;
 
     public GameObject tempBoardTarget;
 
     // Start is called before the first frame update
     void Start()
     {
+        auSource = GetComponent<AudioSource>();
+        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100;
         controller = transform.GetComponent<CharacterController>();
         playerCam = transform.Find("Main Camera");
         VerRotation = 0;
@@ -75,5 +79,22 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply the push
         body.AddForceAtPosition(pushDir * PushForce / body.mass, hit.point); //BUG: moving sideways while pushing makes pushing MUCH easier...
+    }
+
+    public void PlayFootstepAudio()
+    {
+        float ran = Random.Range(0f, 1f);
+        if(ran < 0.333f)
+        {
+            auSource.PlayOneShot(footS1);
+        }
+        else if(ran < 0.666)
+        {
+            auSource.PlayOneShot(footS2);
+        }
+        else
+        {
+            auSource.PlayOneShot(footS3);
+        }
     }
 }
