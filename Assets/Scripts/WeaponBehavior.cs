@@ -6,11 +6,13 @@ using UnityEngine.Animations;
 public class WeaponBehavior : MonoBehaviour
 {
     public List<string> animations;
+    private AudioSource auSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        auSource = gameObject.GetComponent<AudioSource>();
+        auSource.volume = PlayerPrefs.GetInt("SFX", 50) / 100;
     }
 
     // Update is called once per frame
@@ -43,5 +45,6 @@ public class WeaponBehavior : MonoBehaviour
     public void PlayWeaponAnimation()
     {
         gameObject.GetComponent<Animator>().Play(RandomWeaponAnimation(), 0, 0f);
+        auSource.Play();
     }
 }
