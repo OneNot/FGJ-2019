@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
             PrevWeapon();
         }
 
-        //print(Input.GetAxis("Mouse ScrollWheel"));
+        print(Input.GetAxis("Mouse ScrollWheel"));
         /*
         if(enemyTarget != null)
         print(enemyTarget.name);*/
@@ -75,18 +75,32 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public bool SwitchToWeapon(GameObject weapon)
+    public void SwitchToWeapon(GameObject weapon,string next_or_prev)
     {
         if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == true)
         {
             UnEquipWeapon();
             equippedWeapon = weapon;
             EquipWeapon();
-            return true;
         }
 
-        else
-            return false;
+        else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "next")
+        {
+            UnEquipWeapon();
+            equippedWeapon = weapon;
+            EquipWeapon();
+            NextWeapon();
+        }
+
+        else if (weapon.GetComponentInChildren<WeaponInfo>().unlocked == false && next_or_prev == "prev")
+        {
+            UnEquipWeapon();
+            equippedWeapon = weapon;
+            EquipWeapon();
+            PrevWeapon();
+        }
+
+
     }
 
     public void EquipWeapon()
@@ -101,41 +115,25 @@ public class PlayerAttack : MonoBehaviour
 
     public void NextWeapon()
     {
-        int counter = 1;
-
-        if(Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[Weapons.Count -1])
+        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[Weapons.Count - 1])
         {
-            for(int i = 0;i<Weapons.Count; i++)
-
-            if(SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + counter]) == true)
-            {
-                    i = Weapons.Count;
-            }
-
-            counter++;
+            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) + 1], "next");
         }
 
         else
-            SwitchToWeapon(Weapons[0]);
+            SwitchToWeapon(Weapons[0],"next");
+
     }
 
     public void PrevWeapon()
     {
-        int counter = -1;
-
-        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[Weapons.Count - 1])
+        if (Weapons[Weapons.IndexOf(equippedWeapon)] != Weapons[0])
         {
-            for (int i = 0; i < Weapons.Count; i++)
-
-                if (SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) - counter]) == true)
-                {
-                    i = Weapons.Count;
-                }
-
-            counter--;
+            SwitchToWeapon(Weapons[Weapons.IndexOf(equippedWeapon) -1], "prev");
         }
 
         else
-            SwitchToWeapon(Weapons[Weapons.Count - 1]);
+            SwitchToWeapon(Weapons[Weapons.Count-1], "prev");
     }
+
 }

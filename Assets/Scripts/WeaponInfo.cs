@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponInfo : MonoBehaviour
 {
-    public bool unlocked;
+    public bool unlocked = false;
     public string type;
     public bool defaultWeapon;
     // Start is called before the first frame update
