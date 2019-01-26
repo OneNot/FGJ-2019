@@ -7,20 +7,17 @@ using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
-//toimi paska
     private float last_attack_time = 0f;
-    public float attackspeed;
     private Transform target;
     private NavMeshAgent agent;
     public bool attackstate;
-    public float attackdamage;
     public Animator animator;
-    public float health;
     public float forceApplied_onHit;
-
+    private EnemyStatus statuses;
 
     void Start()
     {
+        statuses = GetComponent<EnemyStatus>();
         attackstate = false;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -57,13 +54,13 @@ public class Patrol : MonoBehaviour
     }
     void Update()
     {
-        animator.SetFloat("distanceToPlayer", Vector3.Distance(transform.position, target.position));
+        //animator.SetFloat("distanceToPlayer", Vector3.Distance(transform.position, target.position));
         if (!attackstate)
         {
             animator.SetBool("isMoving", true);
             agent.destination = target.position;
         }
-        else if(Time.time - last_attack_time > attackspeed)
+        else if(Time.time - last_attack_time > statuses.Attackspeed)
         {
             animator.SetBool("isMoving", false);
             animator.SetBool("atWindow", false);
@@ -74,7 +71,7 @@ public class Patrol : MonoBehaviour
                 animator.SetBool("atDoor", true);
                 if (target.GetComponent<DoorScript>().Health > 0f)
                 {
-                    target.GetComponent<DoorScript>().TakeDamage(attackdamage);
+                    target.GetComponent<DoorScript>().TakeDamage(statuses.AttackDamage);
                 }
                 else { GoInside(); }
             }
@@ -83,14 +80,14 @@ public class Patrol : MonoBehaviour
                 animator.SetBool("atWindow", true);
                 if (target.GetComponent<Boards>().BoardsAlive > 0)
                 {
-                    target.GetComponent<Boards>().TakeDamage(attackdamage);
+                    target.GetComponent<Boards>().TakeDamage(statuses.AttackDamage);
                 }
                 else { GoInside(); }
             }
             else
             {
                 animator.SetTrigger("melee_attack");
-                target.GetComponent<PlayerStatus>().TakeDamage(attackdamage);
+                target.GetComponent<PlayerStatus>().TakeDamage(statuses.AttackDamage);
             }
             last_attack_time = Time.time;
         }
@@ -101,12 +98,13 @@ public class Patrol : MonoBehaviour
     {
         attackstate = false;
         animator.SetBool("atWindow", false);
+        //wait untill inside
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
     public void TakeDamage(float damage, Collision hitposition)
     {
-        health -= damage;
-        if (health <= 0f)
+        statuses.Health -= damage;
+        if (statuses.Health <= 0f)
         {
             GetComponent<Ragdoll>().ActivateRagdoll();
             Vector3 forceDirection = (hitposition.GetContact(0).point - hitposition.gameObject.transform.position).normalized;

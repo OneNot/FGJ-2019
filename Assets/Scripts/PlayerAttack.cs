@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
             PrevWeapon();
         }
 
-        print(Input.GetAxis("Mouse ScrollWheel"));
+        //print(Input.GetAxis("Mouse ScrollWheel"));
         /*
         if(enemyTarget != null)
         print(enemyTarget.name);*/

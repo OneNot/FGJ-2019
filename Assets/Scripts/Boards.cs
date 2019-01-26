@@ -27,9 +27,9 @@ public class Boards : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++)
         {
             boards[i] = transform.GetChild(i);
-            boards[i].gameObject.SetActive(false);
+            //boards[i].gameObject.SetActive(false);
         }
-        BoardsAlive = 0;
+        BoardsAlive = 4;
     }
 
     // Update is called once per frame
@@ -82,10 +82,26 @@ public class Boards : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-
-        if (other.tag == "Enemy")
+        print("triggered");
+        GameObject theEnemy = FindParentWithTag(other.gameObject, "Enemy");
+        if (theEnemy != null)
         {
-            other.GetComponent<Patrol>().attackstate = true;
+            print("enemy");
+            theEnemy.GetComponent<Patrol>().attackstate = true;
         }
+    }
+
+    private static GameObject FindParentWithTag(GameObject childObject, string tag)
+    {
+        Transform t = childObject.transform;
+        while (t.parent != null)
+        {
+            if (t.parent.tag == tag)
+            {
+                return t.parent.gameObject;
+            }
+            t = t.parent.transform;
+        }
+        return null; // Could not find a parent with given tag.
     }
 }

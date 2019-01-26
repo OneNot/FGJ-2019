@@ -4338,6 +4338,7 @@ GameObject:
   - component: {fileID: 1109193033742915259}
   - component: {fileID: 6932053360526011266}
   - component: {fileID: 7805621846893940937}
+  - component: {fileID: 5136008053919329379}
   - component: {fileID: 5162615636755382364}
   m_Layer: 0
   m_Name: TheEnemy v2
@@ -4442,12 +4443,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b904d78f33f7c47b3e9b6c1aa056d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackspeed: 2
   attackstate: 0
-  attackdamage: 10
   animator: {fileID: 1109193033742915259}
-  health: 1
   forceApplied_onHit: 9000
+--- !u!114 &5136008053919329379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737556404551503695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706d1d28a742fcf47aec7dbcaca123bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
+  Attackspeed: 1
+  AttackDamage: 10
 --- !u!195 &5162615636755382364
 NavMeshAgent:
   m_ObjectHideFlags: 0
