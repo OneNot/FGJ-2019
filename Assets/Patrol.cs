@@ -57,16 +57,16 @@ public class Patrol : MonoBehaviour
     {
         if (!attackstate)
         {
-            animator.isMoving = true;
+            //animator.isMoving = true;
             agent.destination = target.position;
         }
         else if(Time.time - last_attack_time > attackspeed)
         {
-            animator.isMoving = false;
-            animator.atWindow = animator.atDoor = false;
+            //animator.isMoving = false;
+            //animator.atWindow = animator.atDoor = false;
             if(target.tag == "Door")
             {
-                animator.atDoor = true;
+                //animator.atDoor = true;
                 //if (target.GetComponent<DoorScript>().Health > 0f)
                 {
                     //target.GetComponent<DoorScript>().TakeDamage(attackdamage);
@@ -75,7 +75,7 @@ public class Patrol : MonoBehaviour
             }
             else if(target.tag == "Window")
             {
-                animator.atWindow = true;
+                //animator.atWindow = true;
                 if (target.GetComponent<Boards>().BoardsAlive > 0)
                 {
                     target.GetComponent<Boards>().TakeDamage(attackdamage);

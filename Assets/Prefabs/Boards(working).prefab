@@ -282,12 +282,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6162969161673918519}
-  - component: {fileID: 2825667812155015656}
   - component: {fileID: 1997335023918355886}
   - component: {fileID: 2842083056448295036}
   - component: {fileID: 9078920220108690210}
+  - component: {fileID: 223969859121657380}
   m_Layer: 0
-  m_Name: Boards
+  m_Name: Boards(working)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,26 +311,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &2825667812155015656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7934866209586425937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae51e883c4fb3c34eba19145c1f1a28e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoardsMaxHealth: 20
-  auSourceOther: {fileID: 2842083056448295036}
-  auSourceRepair: {fileID: 9078920220108690210}
-  OnBoardPlaced: {fileID: 8300000, guid: 3de0c7466c4cc1c4991bbf1c7dadc1bf, type: 3}
-  OnBoardDamage: {fileID: 8300000, guid: 1cbd417c685ec4e49a79a0802d675e6c, type: 3}
-  OnBoardBreak: {fileID: 8300000, guid: d99c23cacd3301746af6714a9a011ef7, type: 3}
-  SFXAudioVolume: 1
-  RepairInterval: 1
 --- !u!65 &1997335023918355886
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -536,6 +516,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &223969859121657380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934866209586425937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907c93c185b62474aa0a6295e9061f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoardsMaxHealth: 20
+  auSourceOther: {fileID: 2842083056448295036}
+  auSourceRepair: {fileID: 9078920220108690210}
+  OnBoardPlaced: {fileID: 8300000, guid: 3de0c7466c4cc1c4991bbf1c7dadc1bf, type: 3}
+  OnBoardDamage: {fileID: 8300000, guid: 1cbd417c685ec4e49a79a0802d675e6c, type: 3}
+  OnBoardBreak: {fileID: 8300000, guid: d99c23cacd3301746af6714a9a011ef7, type: 3}
+  SFXAudioVolume: 1
+  RepairInterval: 1
 --- !u!1 &8960494544943452059
 GameObject:
   m_ObjectHideFlags: 0
