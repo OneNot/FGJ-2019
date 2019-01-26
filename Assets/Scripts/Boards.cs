@@ -102,10 +102,14 @@ public class Boards : MonoBehaviour
             }
             t = t.parent.transform;
 <<<<<<< HEAD
+<<<<<<< HEAD
             other.GetComponent<Patrol>().attackstate = true;
             print("triggered");
 =======
 >>>>>>> parent of 28e9378... aaa
+=======
+            
+>>>>>>> 23e8da7d5adc7b28616e2cc7b88770d4f3fc978a
         }
         return null; // Could not find a parent with given tag.
     }
