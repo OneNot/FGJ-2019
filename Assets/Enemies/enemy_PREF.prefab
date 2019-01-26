@@ -6709,7 +6709,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5397776054790207830}
   - component: {fileID: 2164407418696217898}
-  - component: {fileID: 750907765280079381}
   m_Layer: 0
   m_Name: enemy_PREF
   m_TagString: Untagged
@@ -6767,18 +6766,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &750907765280079381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2860767567662654396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b306414b7b34fae498d26b797dddea97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2899984894296829097
 GameObject:
   m_ObjectHideFlags: 0
