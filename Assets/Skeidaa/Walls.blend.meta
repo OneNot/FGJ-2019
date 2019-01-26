@@ -4,6 +4,7 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -18,6 +19,8 @@ ModelImporter:
 =======
 >>>>>>> parent of 6e7e398... vittu saatana
 >>>>>>> 7f3abb461dcd637abcba41246b373a7f9f19f36a
+=======
+>>>>>>> parent of 6e7e398... vittu saatana
     100000: Cube_000
     100002: Cube_001
     100004: Cube_002
@@ -54,6 +57,7 @@ ModelImporter:
     7400000: Default Take
     9500000: //RootNode
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -66,6 +70,8 @@ ModelImporter:
 =======
 >>>>>>> parent of 6e7e398... vittu saatana
 >>>>>>> 7f3abb461dcd637abcba41246b373a7f9f19f36a
+=======
+>>>>>>> parent of 6e7e398... vittu saatana
   externalObjects: {}
   materials:
     importMaterials: 1
