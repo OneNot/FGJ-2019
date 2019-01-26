@@ -63,11 +63,11 @@ public class Patrol : MonoBehaviour
             if(target.tag == "Door")
             {
                 //door animation
-                if (target.GetComponent<DoorScript>().Health > 0f)
+                //if (target.GetComponent<DoorScript>().Health > 0f)
                 {
-                    target.GetComponent<DoorScript>().TakeDamage(attackdamage);
+                    //target.GetComponent<DoorScript>().TakeDamage(attackdamage);
                 }
-                else { GoInside(); }
+                //else { GoInside(); }
             }
             else if(target.tag == "Window")
             {
@@ -81,7 +81,7 @@ public class Patrol : MonoBehaviour
             else
             {
                 //player attack animation
-                target.GetComponent<PlayerStatus>().TakeDamage(attackdamage);
+                //target.GetComponent<PlayerStatus>().TakeDamage(attackdamage);
             }
             last_attack_time = Time.time;
         }
