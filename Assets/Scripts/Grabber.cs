@@ -10,6 +10,7 @@ public class Grabber : MonoBehaviour
     private bool objectInRange;
     private GameObject grabbableObject;
     public GameObject weapon;
+    public float moveCloser = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,30 +20,34 @@ public class Grabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print(grabbableObject.name);
+        
 
-       
     }
 
     //Täällä kehotetaan tekemään fysiikkajutut
     private void LateUpdate()
     {
+        
+
         if (Input.GetButtonDown("Fire2") && objectGrabbed == false && grabbableObject.GetComponent<ThrowableObject>().canBeThrown == true && objectInRange == true)
         {
-            objectGrabbed = true;
+            
             grabbableObject.transform.SetParent(gameObject.transform);
-            grabbableObject.transform.rotation = gameObject.transform.rotation;
+            //grabbableObject.transform.rotation = gameObject.transform.rotation;
             grabbableObject.GetComponent<Rigidbody>().useGravity = false;
-            grabbableObject.transform.position = new Vector3(grabbableObject.transform.position.x, gameObject.transform.position.y, grabbableObject.transform.position.z);
+            grabbableObject.GetComponent<Rigidbody>().isKinematic = true;
+            //grabbableObject.transform.position = new Vector3(grabbableObject.transform.position.x, gameObject.transform.position.y, grabbableObject.transform.position.z);
             grabbedObject = grabbableObject.transform.gameObject;
-
+            //grabbableObject.transform.position = Vector3.MoveTowards(grabbableObject.transform.position, gameObject.transform.position, moveCloser);
             weapon.SetActive(false);
+            objectGrabbed = true;
         }
 
         else if (Input.GetButtonDown("Fire1") && objectGrabbed == true)
         {
             detachObject();
 
+            grabbedObject.GetComponent<ThrowableObject>().primed = true;
             grabbedObject.GetComponent<Rigidbody>().AddForce(transform.forward * force);
 
             weapon.SetActive(true);
@@ -58,8 +63,11 @@ public class Grabber : MonoBehaviour
 
     private void OnTriggerStay(Collider obj)
     {
-        grabbableObject = obj.gameObject;
-        objectInRange = true;
+        if (obj.GetComponent<ThrowableObject>() != null)
+        {
+            grabbableObject = obj.gameObject;
+            objectInRange = true;
+        }
 
     }
 
@@ -72,7 +80,13 @@ public class Grabber : MonoBehaviour
     public void detachObject()
     {
         grabbedObject.transform.SetParent(null);
+
+        
         grabbedObject.GetComponent<Rigidbody>().useGravity = true;
+        grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+        
         objectGrabbed = false;
+
+        print("detached");
     }
 }
