@@ -96,6 +96,7 @@ public class Patrol : MonoBehaviour
     
     private void GoInside()
     {
+        print("go inside");
         attackstate = false;
         animator.SetBool("atWindow", false);
         //wait untill inside
