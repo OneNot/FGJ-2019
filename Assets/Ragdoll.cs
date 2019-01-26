@@ -19,17 +19,7 @@ public class Ragdoll : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-        if (ragdollNow)
-        {
-            ActivateRagdoll();
-        }
-            
 
-
-    }
 
 
     public void ActivateRagdoll()

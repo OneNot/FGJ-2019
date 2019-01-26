@@ -22,8 +22,8 @@ public class Patrol : MonoBehaviour
     void Start()
     {
         attackstate = false;
-        agent = GetComponent<NavMeshAgent>(); 
-
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         GameObject[] windows = GameObject.FindGameObjectsWithTag("Window"); //finds all gameobjects with the tag window attached to them and lists them as boards
         GameObject[] doors = GameObject.FindGameObjectsWithTag("Door"); //finds all gameobjects with the tag window attached to them and lists them as boards
         GameObject[] entrances = new GameObject[windows.Length + doors.Length];
@@ -57,34 +57,30 @@ public class Patrol : MonoBehaviour
     }
     void Update()
     {
+        animator.SetFloat("distanceToPlayer", Vector3.Distance(transform.position, target.position));
         if (!attackstate)
         {
-            //animator.isMoving = true;
+            animator.SetBool("isMoving", true);
             agent.destination = target.position;
         }
         else if(Time.time - last_attack_time > attackspeed)
         {
-           // animator.isMoving = false;
-            //animator.atWindow = animator.atDoor = false;
+            animator.SetBool("isMoving", false);
+            animator.SetBool("atWindow", false);
+            animator.SetBool("atDoor", false);
+            
             if(target.tag == "Door")
             {
-               // animator.atDoor = true;
-            }
-            //animator.isMoving = false;
-            //animator.atWindow = animator.atDoor = false;
-            if(target.tag == "Door")
-            {
-                //animator.atDoor = true;
-                //if (target.GetComponent<DoorScript>().Health > 0f)
-                /*{
-                    //target.GetComponent<DoorScript>().TakeDamage(attackdamage);
-                }*/
-                //else { GoInside(); }
+                animator.SetBool("atDoor", true);
+                if (target.GetComponent<DoorScript>().Health > 0f)
+                {
+                    target.GetComponent<DoorScript>().TakeDamage(attackdamage);
+                }
+                else { GoInside(); }
             }
             else if(target.tag == "Window")
             {
-               // animator.atWindow = true;
-                //animator.atWindow = true;
+                animator.SetBool("atWindow", true);
                 if (target.GetComponent<Boards>().BoardsAlive > 0)
                 {
                     target.GetComponent<Boards>().TakeDamage(attackdamage);
@@ -93,8 +89,8 @@ public class Patrol : MonoBehaviour
             }
             else
             {
-                //player attack animation
-                //target.GetComponent<PlayerStatus>().TakeDamage(attackdamage);
+                animator.SetTrigger("melee_attack");
+                target.GetComponent<PlayerStatus>().TakeDamage(attackdamage);
             }
             last_attack_time = Time.time;
         }
@@ -104,7 +100,7 @@ public class Patrol : MonoBehaviour
     private void GoInside()
     {
         attackstate = false;
-        //go inside animation
+        animator.SetBool("atWindow", false);
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
     public void TakeDamage(float damage, Collision hitposition)
@@ -112,13 +108,12 @@ public class Patrol : MonoBehaviour
         health -= damage;
         if (health <= 0f)
         {
-            //Die
+            GetComponent<Ragdoll>().ActivateRagdoll();
             Vector3 forceDirection = (hitposition.GetContact(0).point - hitposition.gameObject.transform.position).normalized;
             hitposition.gameObject.GetComponent<Rigidbody>().AddForceAtPosition(forceDirection * forceApplied_onHit, hitposition.GetContact(0).point);
         }
         else
         {
-            //gets hit
             animator.SetTrigger("hit");
         }
     }
