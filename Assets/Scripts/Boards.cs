@@ -105,6 +105,7 @@ public class Boards : MonoBehaviour
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             other.GetComponent<Patrol>().attackstate = true;
             print("triggered");
 =======
@@ -112,6 +113,10 @@ public class Boards : MonoBehaviour
 =======
             
 >>>>>>> 23e8da7d5adc7b28616e2cc7b88770d4f3fc978a
+=======
+            other.GetComponent<Patrol>().attackstate = true;
+            print("triggered");
+>>>>>>> parent of 6e7e398... vittu saatana
 =======
             other.GetComponent<Patrol>().attackstate = true;
             print("triggered");
